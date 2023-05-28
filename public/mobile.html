@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+  <title>Удаленное управление сайтом</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+<h1>Удаленное управление сайтом</h1>
+<button id="downButton" >Вниз</button>
+<button id="upButton">Вверх</button>
+<button id="leftButton">Влево</button>
+<button id="rightButton">Вправо</button>
+<button id="enterButton">ввод</button>
+<script>
+  const socket = io('/mobile');
+  const downButton = document.getElementById('downButton');
+  const upButton = document.getElementById('upButton');
+  const rightButton = document.getElementById('rightButton');
+  const leftButton = document.getElementById('leftButton');
+  const enterButton = document.getElementById('enterButton');
+  downButton.addEventListener('click', () => {
+    socket.emit('downButtonClick');
+  });
+  rightButton.addEventListener('click', () => {
+    socket.emit('rightButtonClick');
+  });
+  upButton.addEventListener('click', () => {
+    socket.emit('upButtonClick');
+  });
+  leftButton.addEventListener('click', () => {
+    socket.emit('leftButtonClick');
+  });
+  enterButton.addEventListener('click', () => {
+    socket.emit('enterButtonClick');
+  });
+</script>
+</body>
+</html>
+
+
