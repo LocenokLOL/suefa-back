@@ -8,12 +8,60 @@
 </head>
 <body>
 <h1>Удаленное управление сайтом</h1>
-<button id="downButton" >Вниз</button>
-<button id="upButton">Вверх</button>
-<button id="leftButton">Влево</button>
-<button id="rightButton">Вправо</button>
-<button id="enterButton">ввод</button>
-<button id="backButton">назад</button>
+<div>
+<button id="upButton" style="font-size: 15px;
+padding: 10px 30px;
+margin-left: 110px;
+background-color: #ccc;
+color: #000;
+border: none;
+border-radius: 5px;">Вверх</button>
+</div>
+<div>
+  <button id="leftButton"  style="font-size: 15px;
+padding: 10px 30px;
+margin-top: 40px;
+margin-bottom: 40px;
+margin-right: 15px;
+background-color: #ccc;
+color: #000;
+border: none;
+border-radius: 5px;">Влево</button>
+  <button id="enterButton" style="font-size: 15px;
+padding: 10px 30px;
+margin-top: 40px;
+margin-bottom: 40px;
+margin-right: 15px;
+background-color: #ccc;
+color: #000;
+border: none;
+border-radius: 5px;">ввод</button>
+  <button id="rightButton" style="font-size: 15px;
+padding: 10px 30px;
+margin-top: 40px;
+margin-bottom: 40px;
+background-color: #ccc;
+color: #000;
+border: none;
+border-radius: 5px;">Вправо</button>
+
+</div>
+<button id="downButton " style="font-size: 15px;
+padding: 10px 30px;
+margin-left: 110px;
+background-color: #ccc;
+color: #000;
+border: none;
+border-radius: 5px;" >Вниз</button>
+<button id="backButton"  style="font-size: 15px;
+padding: 10px 30px;
+margin-top: 30px;
+margin-right: 10px;
+background-color: #ccc;
+color: #000;
+border: none;
+border-radius: 5px;">назад</button>
+
 <script>
   const socket = io('/mobile');
   const downButton = document.getElementById('downButton');
