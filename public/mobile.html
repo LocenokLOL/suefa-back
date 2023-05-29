@@ -13,6 +13,7 @@
 <button id="leftButton">Влево</button>
 <button id="rightButton">Вправо</button>
 <button id="enterButton">ввод</button>
+<button id="backButton">назад</button>
 <script>
   const socket = io('/mobile');
   const downButton = document.getElementById('downButton');
@@ -20,6 +21,7 @@
   const rightButton = document.getElementById('rightButton');
   const leftButton = document.getElementById('leftButton');
   const enterButton = document.getElementById('enterButton');
+  const backButton = document.getElementById('backButton');
   downButton.addEventListener('click', () => {
     socket.emit('downButtonClick');
   });
@@ -35,8 +37,12 @@
   enterButton.addEventListener('click', () => {
     socket.emit('enterButtonClick');
   });
+  backButton.addEventListener('click', () => {
+    socket.emit('backButtonClick');
+  });
 </script>
 </body>
 </html>
+
 
 
