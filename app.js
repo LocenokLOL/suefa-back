@@ -62,11 +62,18 @@ mobile.on('connection',(socket)=>{
     socket.on('disconnect', () => {
         console.log('Клиент с мобильного устройства отключился');
     });
+    socket.on('backButtonClick',() =>{
+        mobile.emit('backButtonClickOnMobile');
+    });
 });
 
 server.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`);
 });
+
+
+
+
 
 
 
