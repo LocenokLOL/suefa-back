@@ -19,9 +19,17 @@ let isMobileUp = false;
 let firstPlayer = true;
 
 mobile.on('connection',(socket)=>{
-    socket.on('joinRoom', (room) => {
-        socket.join(room);
-        console.log(`Socket ${socket.id} joined room ${room}`);
+    socket.on('joinRoom', () => {
+        if (firstPlayer){
+            socket.join('firstPlayer');
+            firstPlayer = false;
+            console.log(`Socket ${socket.id} joined room ${room}`);
+        }
+        else{
+            socket.join('secondPlayer');
+            console.log(`Socket ${socket.id} joined room ${room}`);
+        }
+        
     });
 
 
