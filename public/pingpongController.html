@@ -19,13 +19,8 @@
     const upButton = document.getElementById('upButton');
     const enterButton = document.getElementById('enterButton');
     const backButton = document.getElementById('backButton');
-    let firstPlayer=true;
     socket.on('connect',()=> {
-        if (firstPlayer) {
-            socket.emit('joinRoom','firstPlayer');
-            firstPlayer = false;
-        } else {
-            socket.emit('joinRoom','secondPlayer');
+        socket.emit('joinRoom');
         };
         downButton.addEventListener('touchstart', () => {
             socket.emit('pingPongDownButtonClicked');
