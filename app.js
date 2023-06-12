@@ -16,9 +16,16 @@ const mobile = io.of('/mobile');
 
 let code = null;
 let isMobileUp = false;
+let firstPlayer = true;
 
 mobile.on('connection',(socket)=>{
-    socket.on('connectFromPC',()=>{
+    socket.on('joinRoom', (room) => {
+        socket.join(room);
+        console.log(`Socket ${socket.id} joined room ${room}`);
+    });
+
+
+    socket.on('connectFromPC', ()=>{
         console.log('Клиент подключился с компьютера');
     });
 
@@ -58,18 +65,57 @@ mobile.on('connection',(socket)=>{
         console.log('Клиент нажал на кнопку ввода с мобильного устройства');
         mobile.emit('enterButtonClickOnMobile');
     });
-
+    socket.on('disconnecting', () => {
+        const rooms = Object.keys(socket.rooms);
+        console.log('user is leaving rooms:', rooms);
+    });
     socket.on('disconnect', () => {
         console.log('Клиент с мобильного устройства отключился');
     });
     socket.on('backButtonClick',() =>{
         mobile.emit('backButtonClickOnMobile');
     });
+    socket.on('pingPongDownButtonClicked',()=>{
+        if (socket.rooms.has('firstPlayer')){
+            console.log('первый игрок нажал кнопку вниз');
+            mobile.emit('firstPingPongDownButtonClickOnMobile');
+        }
+        if (socket.rooms.has('secondPlayer')){
+            console.log('второй игрок нажал кнопку вниз');
+            mobile.emit('secondPingPongDownButtonClickOnMobile');
+        }
+    });
+    socket.on('pingPongUpButtonClicked',()=>{
+        if (socket.rooms.has('firstPlayer')){
+            console.log('первый игрок нажал кнопку вверх');
+            mobile.emit('firstPingPongUpButtonClickOnMobile');
+        }
+
+        if (socket.rooms.has('secondPlayer')){
+            console.log('второй игрок нажал кнопку вверх')
+            mobile.emit('secondPingPongUpButtonClickOnMobile');
+        }
+    });
+    socket.on('pingPongUpButtonIsUp',()=>{
+        if (socket.rooms.has('firstPlayer'))
+            console.log('отжал кнопку');
+            mobile.emit('firstPingPongUpButtonIsUpOnMobile');
+        if (socket.rooms.has('secondPlayer'))
+            mobile.emit('secondPingPongUpButtonIsUpOnMobile');
+    });
+    socket.on('pingPongDownButtonIsUp',()=>{
+        if (socket.rooms.has('firstPlayer'))
+            mobile.emit('firstPingPongDownButtonIsUpOnMobile');
+        if (socket.rooms.has('secondPlayer'))
+            mobile.emit('secondPingPongDownButtonIsUpOnMobile');
+    });
+
 });
 
 server.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`);
 });
+
 
 
 
