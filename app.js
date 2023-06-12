@@ -23,11 +23,11 @@ mobile.on('connection',(socket)=>{
         if (firstPlayer){
             socket.join('firstPlayer');
             firstPlayer = false;
-            console.log(`Socket ${socket.id} joined room ${room}`);
+            
         }
         else{
             socket.join('secondPlayer');
-            console.log(`Socket ${socket.id} joined room ${room}`);
+            
         }
         
     });
