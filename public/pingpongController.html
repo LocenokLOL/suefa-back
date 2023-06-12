@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+    <title>Удаленное управление сайтом</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+<h1>Удаленное управление сайтом</h1>
+<button id="upButton" >Вверх</button>
+<button id="enterButton">ввод</button>
+<button id="downButton">Вниз</button>
+<button id="backButton" >назад</button>
+
+<script>
+    const socket = io('/mobile');
+    const downButton = document.getElementById('downButton');
+    const upButton = document.getElementById('upButton');
+    const enterButton = document.getElementById('enterButton');
+    const backButton = document.getElementById('backButton');
+    let firstPlayer=true;
+    socket.on('connect',()=> {
+        if (firstPlayer) {
+            socket.emit('joinRoom','firstPlayer');
+            firstPlayer = false;
+        } else {
+            socket.emit('joinRoom','secondPlayer');
+        };
+        downButton.addEventListener('touchstart', () => {
+            socket.emit('pingPongDownButtonClicked');
+        });
+        downButton.addEventListener('touchend',()=>{
+            socket.emit('pingPongDownButtonIsUp');
+        });
+        upButton.addEventListener('touchend',()=>{
+            socket.emit('pingPongUpButtonIsUp');
+        });
+        upButton.addEventListener('touchstart', () => {
+            socket.emit('pingPongUpButtonClicked');
+        });
+        enterButton.addEventListener('click', () => {
+            socket.emit('enterButtonClick');
+        });
+        backButton.addEventListener('click', () => {
+            socket.emit('backButtonClick');
+        });
+    });
+</script>
+</body>
+</html>
