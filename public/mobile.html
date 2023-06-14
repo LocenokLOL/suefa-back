@@ -1,20 +1,102 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link href="/favicon.ico" type="image/x-icon" rel="icon" />
-  <title>Удаленное управление сайтом</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-</head>
-<body>
-<h1>Удаленное управление сайтом</h1>
-<button id="upButton" >Вверх</button>
-<button id="leftButton">Влево</button>
-<button id="enterButton">ввод</button>
-<button id="rightButton">Вправо</button>
-<button id="downButton">Вниз</button>
-<button id="backButton" >назад</button>
-
+    <head>
+        <link rel="stylesheet" href="./assets/css/mobile.css" />
+        <title>Удаленное управление сайтом</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    </head>
+    <body>
+        <table class="center">
+            <tbody>
+                <tr>
+                    <td colspan="3">
+                        <button id="upButton" class="buttonStyle">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="2em"
+                                viewBox="0 0 320 512"
+                                class="svgStyles"
+                                style="transform: rotate(180deg)"
+                            >
+                                <path
+                                    d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+                                />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="leftButton" class="buttonStyle">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="2em"
+                                viewBox="0 0 320 512"
+                                class="svgStyles"
+                                style="transform: rotate(90deg)"
+                            >
+                                <path
+                                    d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+                                />
+                            </svg>
+                        </button>
+                    </td>
+                    <td>
+                        <button
+                            id="enterButton"
+                            class="buttonStyle enterButtonStyles"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="1em"
+                                viewBox="0 0 384 512"
+                            >
+                                <path
+                                    d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+                                />
+                            </svg>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="rightButton" class="buttonStyle">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="2em"
+                                viewBox="0 0 320 512"
+                                class="svgStyles"
+                                style="transform: rotate(-90deg)"
+                            >
+                                <path
+                                    d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+                                />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="">
+                            <button id="downButton" class="buttonStyle">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="2em"
+                                    viewBox="0 0 320 512"
+                                    class="svgStyles"
+                                >
+                                    <path
+                                        d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="backButtonPosition">
+            <button id="backButton" class="backButtonStyles">назад</button>
+        </div>
 <script>
   const socket = io('/mobile');
   const downButton = document.getElementById('downButton');
@@ -53,8 +135,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-

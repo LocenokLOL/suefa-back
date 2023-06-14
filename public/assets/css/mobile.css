@@ -1,0 +1,55 @@
+body{
+  background-color: #1F1F1F;
+}
+
+td, th {
+  text-align: center;
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+}
+
+.buttonStyle{
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  color: white;
+}
+
+.enterButtonStyles{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.svgStyles{
+  width: 100px;
+  height: 100px;
+  fill: #fff;
+}
+
+.backButtonPosition{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backButtonStyles{
+  background-color: #4671D5;
+  border-radius: 20px;
+  width: 300px;
+  color: white;
+  font-size: x-large;
+}
+
+.center{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

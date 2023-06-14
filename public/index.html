@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <title>Удаленное управление сайтом</title>
+    <link rel="stylesheet" href="./assets/css/indexStyle.css">
+    <title> Suefa Удаленное управление сайтом</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
         // Определение типа устройства
@@ -10,22 +10,47 @@
 
         // Загрузка соответствующего HTML файла в зависимости от типа устройства
         if (isMobile) {
-            window.location.href = "pagecodeMobile.html";
+            // window.location.href = "pagecodeMobile.html";
         }
     </script>
 </head>
 <body>
-<h1>Контроль сайта</h1>
-<button onclick="goToPage()"> Начать играть </button>
-<script>
-    socket = io('/mobile');
-    socket.on('connect',() => {
-            console.log('Клиент подключился с ПК');
-            socket.emit('connectFromPC');
-    });
-    function goToPage() {
-        window.location.href = "codepage.html"; // замените ссылку на ту, которую нужно открыть
-    }
-</script>
+    <div>
+        <div class="location">
+            <section class="header">
+                <div class="title-wrapper">
+                  <h1 class="sweet-title">
+                    <span data-text="SUEFA">SUEFA</span>
+                  </h1>
+                  <span class="top-title">Игровая платформа</span>
+                  <span class="bottom-title">Контроллер</span>
+                  </div>
+              </section>
+              <p class="paragraph">
+                Добро пожаловать на SUEFA!
+              </p>
+              <blockquote>
+                <p>
+                    Мы рады приветствовать Вас на нашей игровой платформе. Всегда готовы помочь, если возникнут вопросы или проблемы. Приятной игры!
+                </p>
+              </blockquote>
+              <p class="paragraph">
+                Кликай на кнопку ниже, тобы начать играть!
+              </p>
+            <button class='glowing-btn' onclick="goToPage()">
+                <span class='glowing-txt'>Начать<span class='faulty-letter'>И</span>грать</span>
+            </button>
+        </div>
+    <script>
+        socket = io('/mobile');
+        socket.on('connect',() => {
+                console.log('Клиент подключился с ПК');
+                socket.emit('connectFromPC');
+        });
+        function goToPage() {
+            window.location.href = "pagecodeMobile.html"; // замените ссылку на ту, которую нужно открыть
+        }
+    </script>
+    </div>
 </body>
 </html>

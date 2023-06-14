@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+    <link rel="stylesheet" href="./assets/css/pagecodeMobile.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <input type="password" id="password" name="password">
-    <button onclick="checkPassword()">Войти</button>
-
-<script>
-    socket = io('/mobile');
-    socket.on('connection',()=>{
-        console.log('Подключился с мобилки');
-        socket.emit('connectFromMobile');
-    });
-    let currentPassword;
-    function checkPassword() {
-        const passwordInput = document.getElementById("password");
-        const enteredPassword = passwordInput.value;
-        currentPassword = enteredPassword;
-        socket.emit('enterPassword',enteredPassword);
-    }
-    socket.on('passwordRight',()=>{
-        socket.emit('wentToGamePage');
-        goToPage();
-    });
-    socket.on('passwordWrong',()=>{
-        alert('неверный код');
-    });
-    function goToPage() {
-        window.location.href = "mobile.html"; // замените ссылку на ту, которую нужно открыть
-    }
-</script>
+    <div>
+        <input class="c-checkbox" type="checkbox" id="checkbox">
+        <div class="c-formContainer">
+            <p class="paragraph">Введите код вашей комнаты</p>
+            <div class="c-form" action="">
+                    <input class="c-form__input" placeholder="Введите код" type="number" id="password" name="password" required>
+                    <label class="c-form__buttonLabel">
+                    <button class="c-form__button" onclick="checkPassword()">Войти</button>
+                    </label>
+                    <label class="c-form__toggle" for="checkbox" data-title="Ввести код"></label>
+                </div>
+            </div>
+    
+    <script>
+        socket = io('/mobile');
+        socket.on('connection',()=>{
+            console.log('Подключился с мобилки');
+            socket.emit('connectFromMobile');
+        });
+        function checkPassword() {
+            const passwordInput = document.getElementById("password");
+            const enteredPassword = passwordInput.value;
+            socket.emit('enterPassword',enteredPassword);
+        }
+        socket.on('passwordRight',()=>{
+           goToPage();
+        });
+        socket.on('passwordWrong',()=>{
+           alert('неверный код');
+        });
+        function goToPage() {
+            window.location.href = "mobile.html"; // замените ссылку на ту, которую нужно открыть
+        }
+    </script>
+    </div>
 </body>
 </html>
 
