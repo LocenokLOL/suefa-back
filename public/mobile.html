@@ -97,32 +97,41 @@
         <div class="backButtonPosition">
             <button id="backButton" class="backButtonStyles">назад</button>
         </div>
-        <script>
-            const socket = io("/mobile");
-            const downButton = document.getElementById("downButton");
-            const upButton = document.getElementById("upButton");
-            const rightButton = document.getElementById("rightButton");
-            const leftButton = document.getElementById("leftButton");
-            const enterButton = document.getElementById("enterButton");
-            const backButton = document.getElementById("backButton");
-            downButton.addEventListener("click", () => {
-                socket.emit("downButtonClick");
-            });
-            rightButton.addEventListener("click", () => {
-                socket.emit("rightButtonClick");
-            });
-            upButton.addEventListener("click", () => {
-                socket.emit("upButtonClick");
-            });
-            leftButton.addEventListener("click", () => {
-                socket.emit("leftButtonClick");
-            });
-            enterButton.addEventListener("click", () => {
-                socket.emit("enterButtonClick");
-            });
-            backButton.addEventListener("click", () => {
-                socket.emit("backButtonClick");
-            });
-        </script>
-    </body>
+<script>
+  const socket = io('/mobile');
+  const downButton = document.getElementById('downButton');
+  const upButton = document.getElementById('upButton');
+  const rightButton = document.getElementById('rightButton');
+  const leftButton = document.getElementById('leftButton');
+  const enterButton = document.getElementById('enterButton');
+  const backButton = document.getElementById('backButton');
+  socket.on('joinPingPongRoomOnMobile',()=>{
+    socket.emit('emit');
+    window.location.href = "pingpongController.html";
+  });
+  downButton.addEventListener('click', () => {
+    socket.emit('downButtonClick');
+  });
+  rightButton.addEventListener('click', () => {
+    socket.emit('rightButtonClick');
+  });
+  upButton.addEventListener('click', () => {
+    socket.emit('upButtonClick');
+  });
+  leftButton.addEventListener('click', () => {
+    socket.emit('leftButtonClick');
+  });
+  enterButton.addEventListener('click', () => {
+    socket.emit('enterButtonClick');
+  });
+  backButton.addEventListener('click', () => {
+      socket.emit('backButtonClick');
+
+  });
+
+  function goToPage() {
+    window.location.href = "pingpongController.html"; // замените ссылку на ту, которую нужно открыть
+  }
+</script>
+</body>
 </html>

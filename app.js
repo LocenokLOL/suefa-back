@@ -17,14 +17,34 @@ const mobile = io.of('/mobile');
 let code = null;
 let isMobileUp = false;
 let firstPlayer = true;
+let currentRoom;
 
-mobile.on('connection',(socket)=>{
+
+mobile.on('connect',(socket)=>{
+    socket.on('wentToGamePage',()=>{
+        socket.emit('joinRoomOnClient',code);
+    });
+
+    socket.on('joinPlayerRoom',()=>{
+       if (firstPlayer){
+           socket.join('firstPlayer');
+           firstPlayer = false;
+       }
+       else{
+           socket.join('secondPlayer');
+       }
+    });
     socket.on('joinRoom', (room) => {
         socket.join(room);
         console.log(`Socket ${socket.id} joined room ${room}`);
     });
-
-
+    socket.on('joinPingPongRoom', ()=>{
+        mobile.emit('joinPingPongRoomOnMobile');
+        console.log('получил вот это сообщение, о том что переходим в пинг понг')
+    });
+    socket.on('emit',()=>{
+       console.log('rhenj');
+    });
     socket.on('connectFromPC', ()=>{
         console.log('Клиент подключился с компьютера');
     });
@@ -65,13 +85,7 @@ mobile.on('connection',(socket)=>{
         console.log('Клиент нажал на кнопку ввода с мобильного устройства');
         mobile.emit('enterButtonClickOnMobile');
     });
-    socket.on('disconnecting', () => {
-        const rooms = Object.keys(socket.rooms);
-        console.log('user is leaving rooms:', rooms);
-    });
-    socket.on('disconnect', () => {
-        console.log('Клиент с мобильного устройства отключился');
-    });
+
     socket.on('backButtonClick',() =>{
         mobile.emit('backButtonClickOnMobile');
     });
@@ -115,7 +129,6 @@ mobile.on('connection',(socket)=>{
 server.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`);
 });
-
 
 
 
