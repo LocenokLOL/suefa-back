@@ -17,16 +17,19 @@
         console.log('Подключился с мобилки');
         socket.emit('connectFromMobile');
     });
+    let currentPassword;
     function checkPassword() {
         const passwordInput = document.getElementById("password");
         const enteredPassword = passwordInput.value;
+        currentPassword = enteredPassword;
         socket.emit('enterPassword',enteredPassword);
     }
     socket.on('passwordRight',()=>{
-       goToPage();
+        socket.emit('wentToGamePage');
+        goToPage();
     });
     socket.on('passwordWrong',()=>{
-       alert('неверный код');
+        alert('неверный код');
     });
     function goToPage() {
         window.location.href = "mobile.html"; // замените ссылку на ту, которую нужно открыть
@@ -34,3 +37,4 @@
 </script>
 </body>
 </html>
+
