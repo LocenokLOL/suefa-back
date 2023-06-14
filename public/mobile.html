@@ -23,6 +23,10 @@
   const leftButton = document.getElementById('leftButton');
   const enterButton = document.getElementById('enterButton');
   const backButton = document.getElementById('backButton');
+  socket.on('joinPingPongRoomOnMobile',()=>{
+    socket.emit('emit');
+    window.location.href = "pingpongController.html";
+  });
   downButton.addEventListener('click', () => {
     socket.emit('downButtonClick');
   });
@@ -39,12 +43,16 @@
     socket.emit('enterButtonClick');
   });
   backButton.addEventListener('click', () => {
-    socket.emit('backButtonClick');
+      socket.emit('backButtonClick');
+
   });
+
+  function goToPage() {
+    window.location.href = "pingpongController.html"; // замените ссылку на ту, которую нужно открыть
+  }
 </script>
 </body>
 </html>
-
 
 
 
